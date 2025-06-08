@@ -1,0 +1,108 @@
+@font-face {
+	font-family: "atk_nxt";
+	src: url("./fonts/atk_nxt.ttf") format("truetype");
+	font-display: swap;
+}
+@font-face {
+	font-family: "atk_mon";
+	src: url("./fonts/atk_mon.ttf") format("truetype");
+	font-display: swap;
+}
+:root {
+	--font_sans: "atk_nxt", sans-serif;
+	--font_mono: "atk_mon", monospace;
+
+	--color_White: #fff8e7;
+
+	--color_Black_light: #2e2e2e;
+	--color_Black_base: #242424;
+	--color_Black_dark: #1a1a1a;
+
+	--color_Red_light: #ffcccc;
+	--color_Red_base: #ff9999;
+	--color_Red_dark: #ff6666;
+	--color_Red_darker: #800000;
+
+	--color_Yellow_light: #ffffcc;
+	--color_Yellow_base: #ffff99;
+	--color_Yellow_dark: #ffff66;
+	--color_Yellow_darker: #7f8000;
+
+	--color_Green_light: #ccffcc;
+	--color_Green_base: #99ff99;
+	--color_Green_dark: #66ff66;
+	--color_Green_darker: #008000;
+
+	--color_Cyan_light: #ccffff;
+	--color_Cyan_base: #99ffff;
+	--color_Cyan_dark: #66ffff;
+	--color_Cyan_darker: #007f80;
+
+	--color_Lavender_light: #ccccff;
+	--color_Lavender_base: #9999ff;
+	--color_Lavender_dark: #6666ff;
+	--color_Lavender_darker: #000080;
+
+	--color_Magenta_light: #ffccff;
+	--color_Magenta_base: #ff99ff;
+	--color_Magenta_dark: #ff66ff;
+	--color_Magenta_darker: #80007f;
+
+	--color_Golden_light: #ebe9e0;
+	--color_Golden_base: #d7d3c1;
+	--color_Golden_dark: #c3bda2;
+	--color_Golden_semi_darker: #a59c73;
+	--color_Golden_darker: #4e4932;
+	--color_Golden_darkest: #2f2c1e;
+}
+body {
+	background-color: var(--color_Black_base);
+	color: var(--color_Golden_light);
+	font-family: var(--font_sans);
+	margin: 2rem 0rem 0rem 2rem;
+}
+header {
+	padding-bottom: 5rem;
+}
+footer {
+	color: var(--color_Red_light);
+	margin-top: 5rem;
+}
+h1 {
+	color: var(--color_Yellow_base);
+}
+caption {
+	font-weight: 600;
+	padding: 2rem;
+}
+td,
+table {
+	padding: 1rem;
+	border: 0.1rem solid var(--color_Golden_darker);
+	border-collapse: collapse;
+}
+table {
+	/* background-color: var(--color_Black_dark); */
+}
+tr {
+	color: var(--color_Golden_semi_darker);
+}
+td {
+	color: var(--color_Golden_light);
+}
+tr:nth-child(even) {
+	background-color: var(--color_Golden_darkest);
+}
+.code {
+	color: var(--color_Green_base);
+	font-family: var(--font_mono);
+	font-size: 0.8rem;
+}
+button {
+	background-color: var(--color_Black_light);
+	color: var(--color_Lavender_base);
+}
+button:hover {
+	background-color: var(--color_Golden_darker);
+	cursor: pointer;
+}

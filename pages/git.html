@@ -1,0 +1,128 @@
+<html lang="en-US">
+	<head>
+		<title>Git workflow</title>
+		<meta property="og:title" content="Git workflow" />
+
+		<link rel="stylesheet" href="../index.css" />
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="index, follow" />
+		<meta name="theme-color" content="#242424" />
+		<meta name="author" content="RUMi https://r00m3.github.io" />
+		<meta
+			name="description"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+		<meta
+			property="og:description"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+		<meta property="og:url" content="https://r00m3.github.io" />
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:site_name"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+	</head>
+
+	<body>
+		<header>
+			<h1>Git workflow</h1>
+			<p>
+				This action sequence is assembled out of my notes. I repeat it
+				over and over again when setting up repositories on new machine.
+				Current page is to have all this in a structured manner to
+				follow easily. Maybe later Ill just write a program to run every
+				step automatically. In general all this generates public and
+				private key pairs. Then you paste those keys in your GitHub
+				"Deploy key" section. So you can clone and use your repos inside
+				desired machine. With or without write access. Dont forget to
+				replace YOURNAME, YOUR@EMAIL, REPONAME and LOCALUSER with actual
+				data.
+			</p>
+			<a href="../index.html"><button>< Back</button></a>
+		</header>
+
+		<table>
+			<caption>
+				Run once
+			</caption>
+			<th>Purpose</th>
+			<th>Command</th>
+			<tr>
+				<td>Define user name and user email globally</td>
+				<td class="code">
+					git config --global user.name "YOURNAME" git config --global
+					user.email "YOUR@EMAIL"
+				</td>
+			</tr>
+			<tr>
+				<td>Create .ssh directory to store your keys and aliases</td>
+				<td class="code">mkdir ~/.ssh</td>
+			</tr>
+			<tr>
+				<td>Copy GitHub public fingerprint from</td>
+				<td class="code">
+					https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
+				</td>
+			</tr>
+			<tr>
+				<td>And paste it to</td>
+				<td class="code">/home/LOCALUSER/.ssh/known_hosts</td>
+			</tr>
+		</table>
+
+		<table>
+			<caption>
+				Run for every new repository
+			</caption>
+			<th>Purpose</th>
+			<th>Command</th>
+			<tr>
+				<td>Generate public and private keys for target repo</td>
+				<td class="code">
+					ssh-keygen -t ed25519 -C "GH_YOURNAME_REPONAME" -f
+					~/.ssh/id_ed25519_GH_YOURNAME_REPONAME
+				</td>
+			</tr>
+			<tr>
+				<td>Add generated key to ssh keyring</td>
+				<td class="code">
+					ssh-add ~/.ssh/id_ed25519_GH_YOURNAME_REPONAME
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Config SSH agent aliases. Open /home/LOCALUSER/.ssh/config
+					And paste(append) this
+				</td>
+				<td class="code">
+					Host REPONAME Hostname github.com
+					IdentityFile=/home/LOCALUSER/.ssh/id_ed25519_GH_YOURNAME_REPONAME
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Open
+					/home/LOCALUSER/.ssh/id_ed25519_GH_YOURNAME_REPONAME.pub
+				</td>
+				<td>
+					Paste its contents in
+					https://github.com/YOURNAME/REPONAME/settings -> Settings ->
+					Deploy keys
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Now you can clone repo by running command from target folder
+				</td>
+				<td class="code">
+					git clone git@REPONAME:YOURNAME/REPONAME.git
+				</td>
+			</tr>
+		</table>
+
+		<footer>now give me your money</footer>
+	</body>
+</html>
