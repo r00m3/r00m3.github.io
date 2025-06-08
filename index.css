@@ -69,7 +69,8 @@ footer {
 	margin-top: 5rem;
 }
 h1 {
-	color: var(--color_Yellow_base);
+	/* color: var(--color_Yellow_base); */
+	color: var(--color_Golden_semi_darker);
 }
 caption {
 	font-weight: 600;
@@ -105,4 +106,7 @@ button {
 button:hover {
 	background-color: var(--color_Golden_darker);
 	cursor: pointer;
+}
+hr {
+	border-color: var(--color_Golden_semi_darker);
 }
