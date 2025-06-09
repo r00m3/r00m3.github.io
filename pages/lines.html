@@ -1,0 +1,233 @@
+<html lang="en-US">
+	<head>
+		<title>Lines</title>
+		<meta property="og:title" content="Lines" />
+
+		<link rel="stylesheet" href="../index.css" />
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="index, follow" />
+		<meta name="theme-color" content="#242424" />
+		<meta name="author" content="RUMi https://r00m3.github.io" />
+		<meta
+			name="description"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+		<meta
+			property="og:description"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+		<meta property="og:url" content="https://r00m3.github.io" />
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:site_name"
+			content="https://r00m3.github.io - Tools, libs, notes."
+		/>
+	</head>
+
+	<body>
+		<header>
+			<h1>lines: golang library for ANSI codes</h1>
+			<p>
+				In case youre new to golang, I write instructions explicitly.
+				Here I use word "line" instead of "string" to specify that its a
+				construct of this particular library.
+			</p>
+			<p>"Line" is ln struct field</p>
+			<div class="code">
+				type New struct {<br />
+				ln string<br />
+				}<br />
+			</div>
+			<p>
+				which we populate by chaining(calling) methods on newly created
+				struct instance.
+			</p>
+			<div class="code">
+				func (n *New) ADD(s string) *New {<br />
+				n.ln += s<br />
+				return n<br />
+				}<br />
+			</div>
+			<p>And finally print with</p>
+			<div class="code">
+				func (n *New) PRINT(a ...any) {<br />
+				fmt.Printf(n.ln, a...)<br />
+				}<br />
+			</div>
+			<br />
+			<a href="../index.html"><button>< Back</button></a>
+			<a href="https://github.com/r00m3/lines"><button>GitHub</button></a>
+		</header>
+
+		<table>
+			<caption>
+				-- Adding library to your local golang project --
+			</caption>
+			<th>Action</th>
+			<th>Command</th>
+			<tr>
+				<td>Open your golang project and make sure you have go.mod</td>
+				<td class="code">
+					go mod init MODULE_NAME<br />
+					go mod tidy
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					Download library to your local folder<br />/home/LOCALUSER/go/pkg/mod/github.com/r00m3
+				</td>
+				<td class="code">
+					go get github.com/r00m3/lines<br />
+					go mod tidy
+				</td>
+			</tr>
+		</table>
+
+		<table>
+			<caption>
+				-- Usage example --
+			</caption>
+			<tr>
+				<td>Create new string named w for later use</td>
+				<td class="code">w := "World"</td>
+			</tr>
+
+			<tr>
+				<td>Create new "line" named ln</td>
+				<td class="code">ln := lines.New{}</td>
+			</tr>
+
+			<tr>
+				<td>
+					Keep adding properties(by chaining methods) to your newly
+					created ln
+				</td>
+				<td class="code">ln.</td>
+			</tr>
+
+			<tr>
+				<td>Add black background to your line</td>
+				<td class="code">
+					ln. <br />
+					BG_black().
+				</td>
+			</tr>
+
+			<tr>
+				<td>Add bright green foreground to your line</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().
+				</td>
+			</tr>
+
+			<tr>
+				<td>Add text "Hello" to your line</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").
+				</td>
+			</tr>
+
+			<tr>
+				<td>Carriage return("enter") on your line</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").<br />
+					ASCII_new_ln().
+				</td>
+			</tr>
+
+			<tr>
+				<td>Add print specifier("placeholder") "%s"</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").<br />
+					ASCII_new_ln().<br />
+					ADD("%s").
+				</td>
+			</tr>
+
+			<tr>
+				<td>Another carriage return("enter") on your line</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").<br />
+					ASCII_new_ln().<br />
+					ADD("%s").<br />
+					ASCII_new_ln().
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					Resets all text attributes to defaults. "Terminal prints" in
+					"normal text" after this.
+				</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").<br />
+					ASCII_new_ln().<br />
+					ADD("%s").<br />
+					ASCII_new_ln().<br />
+					RESET().
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					Your string("line") is now styled, formatted and ready to be
+					printed.<br />
+					Print it. Dont forget to supply arguments for "%s"
+					placeholder.<br />
+					We use w from earlier<br />
+					w := "World"
+				</td>
+				<td class="code">
+					ln.<br />
+					BG_black().<br />
+					FG_BR_green().<br />
+					ADD("Hello").<br />
+					ASCII_new_ln().<br />
+					ADD("%s").<br />
+					ASCII_new_ln().<br />
+					RESET().<br />
+					PRINT(w)
+				</td>
+			</tr>
+		</table>
+		<button popovertarget="btn_001">Show me code</button>
+		<div popover id="btn_001">
+			<img
+				src="../images/usage_example_img_001.png"
+				alt="usage_example_img_001.png"
+				title="usage_example_img_001.png"
+			/>
+		</div>
+
+		<button popovertarget="btn_002">Show me result</button>
+		<div popover id="btn_002">
+			<img
+				src="../images/usage_example_result_001.png"
+				alt="usage_example_result_001.png"
+				title="usage_example_result_001.png"
+			/>
+		</div>
+
+		<footer>now give me your money</footer>
+	</body>
+</html>
